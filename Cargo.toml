@@ -1,4 +1,12 @@
-[package]
+[workspace]
+members = [
+    "lib",
+    "app",
+]
+resolver = "2"
+default-members = ["app"]
+
+[workspace.package]
 name = "writing-a-c-compiler"
 version = "0.1.0"
 edition = "2021"
@@ -6,5 +14,3 @@ authors = ["David Binder"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/BinderDavid/writing-a-c-compiler"
 categories = ["compilers"]
-
-[dependencies]

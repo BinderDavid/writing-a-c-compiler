@@ -1,0 +1,17 @@
+[package]
+name = "tacky"
+
+# Inherited from workspace Cargo.toml
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+categories.workspace = true
+
+[[bin]]
+name = "tacky"
+path = "src/main.rs"
+
+[dependencies]
+tacky-lib = { path = "../lib"}

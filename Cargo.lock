@@ -3,5 +3,12 @@
 version = 3
 
 [[package]]
-name = "writing-a-c-compiler"
+name = "tacky"
+version = "0.1.0"
+dependencies = [
+ "tacky-lib",
+]
+
+[[package]]
+name = "tacky-lib"
 version = "0.1.0"
