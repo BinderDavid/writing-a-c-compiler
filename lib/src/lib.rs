@@ -3,6 +3,7 @@ use std::{
     process::Command,
 };
 
+pub mod ast;
 pub mod lexer;
 
 /// Preprocess a file `path/to/file.c` and return a file `path/to/file.i`.
