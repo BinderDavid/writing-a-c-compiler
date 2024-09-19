@@ -15,3 +15,4 @@ path = "src/main.rs"
 
 [dependencies]
 tacky-lib = { path = "../lib"}
+clap = { version = "4.5.17", features = ["derive"]}
