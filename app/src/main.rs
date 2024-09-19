@@ -5,7 +5,7 @@ use tacky_lib::{assemble_and_link, compile, preprocess};
 
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
-struct CLI {
+struct Cli {
     /// Run the lexer, but stop before parsing.
     #[arg(long)]
     lex: bool,
@@ -18,11 +18,11 @@ struct CLI {
     filepath: PathBuf,
 }
 fn main() {
-    let cli = CLI::parse();
+    let cli = Cli::parse();
     exec(&cli)
 }
 
-fn exec(cli: &CLI) {
+fn exec(cli: &Cli) {
     let mut example: PathBuf = cli.filepath.clone();
 
     preprocess(&example);

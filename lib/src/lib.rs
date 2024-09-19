@@ -3,6 +3,8 @@ use std::{
     process::Command,
 };
 
+pub mod lexer;
+
 /// Preprocess a file `path/to/file.c` and return a file `path/to/file.i`.
 /// The preprocessed file no longer contains C preprocessor directives.
 pub fn preprocess(inputpath: &PathBuf) {
