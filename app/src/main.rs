@@ -1,7 +1,7 @@
 use std::{fs, path::PathBuf, process::exit};
 
 use clap::Parser;
-use tacky_lib::{assemble_and_link, lexer::Lexer, parser::parse_program, preprocess};
+use tacky_lib::{assemble_and_link, lexer::lex, parser::parse_program, preprocess};
 
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
@@ -39,7 +39,7 @@ fn exec(cli: &Cli) -> Result<(), String> {
     let contents = fs::read_to_string(&example).expect("Should have been able to read the file");
 
     // Lex file
-    let mut tokens = Lexer::new(&contents);
+    let mut tokens = lex(&contents)?;
     if cli.lex {
         exit(0)
     };
