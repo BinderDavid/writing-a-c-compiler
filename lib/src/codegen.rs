@@ -1,7 +1,15 @@
+use core::fmt;
+
 use crate::ast;
 
 pub struct Program {
     pub defs: FunctionDefinition,
+}
+
+impl fmt::Display for Program {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}\n.section .note.GNU-stack, \"\",@progbits", self.defs)
+    }
 }
 
 pub struct FunctionDefinition {
@@ -9,14 +17,40 @@ pub struct FunctionDefinition {
     pub instructions: Vec<Instruction>,
 }
 
+impl fmt::Display for FunctionDefinition {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let instructions: Vec<String> =
+            self.instructions.iter().map(|i| format!("{}", i)).collect();
+        write!(f, "    .globl {}\n{}:\n{}", self.name, self.name, instructions.join("\n"))
+    }
+}
+
 pub enum Instruction {
     Ret,
     Mov { src: Operand, dst: Operand },
 }
 
+impl fmt::Display for Instruction {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Instruction::Ret => write!(f, "ret"),
+            Instruction::Mov { src, dst } => write!(f, "movl {}, {}", src, dst),
+        }
+    }
+}
+
 pub enum Operand {
     Immediate(i64),
     Register,
+}
+
+impl fmt::Display for Operand {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Operand::Immediate(i) => write!(f, "${}", i),
+            Operand::Register => write!(f, "%eax"),
+        }
+    }
 }
 
 pub fn compile_program(prog: ast::Program) -> Program {

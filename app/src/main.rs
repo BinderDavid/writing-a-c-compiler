@@ -53,10 +53,11 @@ fn exec(cli: &Cli) -> Result<(), String> {
     };
 
     // Compile the file
-    let _compiled = compile_program(prog);
+    example.set_extension("s");
+    let compiled = compile_program(prog);
+    fs::write(&example, format!("{}", compiled)).expect("Unable to write file");
 
     // Assemble and link the file.
-    example.set_extension("s");
     assemble_and_link(&example);
 
     Ok(())
