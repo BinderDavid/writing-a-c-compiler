@@ -42,8 +42,11 @@ pub enum Token {
     // Identifiers
     //
     //
-    #[regex(r"[a-zA-Z_]+", |lex| lex.slice().to_string())]
+    #[regex(r"[a-zA-Z_]\w*", |lex| lex.slice().to_string())]
     Ident(String),
+    // See: https://github.com/maciejhirsz/logos/issues/415
+    #[regex(r"[0-9]+[a-zA-Z_]+", |_| None)]
+    BadIdentifier,
     // Literals
     //
     //
