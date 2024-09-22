@@ -1,6 +1,7 @@
 use std::{path::PathBuf, process::Command};
 
 pub mod ast;
+pub mod codegen;
 pub mod lexer;
 pub mod parser;
 
