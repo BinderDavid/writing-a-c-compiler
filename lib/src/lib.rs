@@ -1,10 +1,15 @@
 use std::{
+    fs,
     path::{Path, PathBuf},
     process::Command,
 };
 
+use lexer::Lexer;
+use parser::parse_program;
+
 pub mod ast;
 pub mod lexer;
+pub mod parser;
 
 /// Preprocess a file `path/to/file.c` and return a file `path/to/file.i`.
 /// The preprocessed file no longer contains C preprocessor directives.
@@ -24,7 +29,13 @@ pub fn preprocess(inputpath: &PathBuf) {
 /// Compile a preprocessed C file `path/to/file.i` and return a file `path/to/file.s`
 /// which contains assembly code.
 /// Deletes the original `path/to/file.i`.
-pub fn compile(_inputpath: &Path) {
+pub fn compile(inputpath: &Path) {
+    // Read in file
+    let contents = fs::read_to_string(inputpath).expect("Should have been able to read the file");
+    // Lex file
+    let mut tokens = Lexer::new(&contents);
+    // Parse file
+    let _prog = parse_program(&mut tokens);
     todo!()
 }
 

@@ -14,7 +14,7 @@ impl fmt::Display for LexicalError {
     }
 }
 
-#[derive(Logos, Debug, Clone)]
+#[derive(Logos, Debug, Clone, PartialEq, Eq)]
 #[logos(skip r"\s*", skip r"--(([^ \n\r]| [^\|\n\r])[^\n\r]*)?[\n\r]*", error = LexicalError)]
 pub enum Token {
     // Keywords
@@ -47,8 +47,8 @@ pub enum Token {
     // Literals
     //
     //
-    #[regex(r"0|[1-9][0-9]*", |lex| lex.slice().parse::<u64>().unwrap())]
-    IntLit(u64),
+    #[regex(r"0|[1-9][0-9]*", |lex| lex.slice().parse::<i64>().unwrap())]
+    IntLit(i64),
 }
 
 impl fmt::Display for Token {
