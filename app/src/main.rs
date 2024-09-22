@@ -1,7 +1,9 @@
 use std::{fs, path::PathBuf, process::exit};
 
 use clap::Parser;
-use tacky_lib::{assemble_and_link, lexer::lex, parser::parse_program, preprocess};
+use tacky_lib::{
+    assemble_and_link, codegen::compile_program, lexer::lex, parser::parse_program, preprocess,
+};
 
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
@@ -45,10 +47,13 @@ fn exec(cli: &Cli) -> Result<(), String> {
     };
 
     // Parse file
-    let _prog = parse_program(&mut tokens)?;
+    let prog = parse_program(&mut tokens)?;
     if cli.parse {
         exit(0)
     };
+
+    // Compile the file
+    let _compiled = compile_program(prog);
 
     // Assemble and link the file.
     example.set_extension("s");
