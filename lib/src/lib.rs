@@ -1,11 +1,4 @@
-use std::{
-    fs,
-    path::{Path, PathBuf},
-    process::Command,
-};
-
-use lexer::Lexer;
-use parser::parse_program;
+use std::{path::PathBuf, process::Command};
 
 pub mod ast;
 pub mod lexer;
@@ -24,19 +17,6 @@ pub fn preprocess(inputpath: &PathBuf) {
         .arg(outputpath)
         .output()
         .expect("foo");
-}
-
-/// Compile a preprocessed C file `path/to/file.i` and return a file `path/to/file.s`
-/// which contains assembly code.
-/// Deletes the original `path/to/file.i`.
-pub fn compile(inputpath: &Path) {
-    // Read in file
-    let contents = fs::read_to_string(inputpath).expect("Should have been able to read the file");
-    // Lex file
-    let mut tokens = Lexer::new(&contents);
-    // Parse file
-    let _prog = parse_program(&mut tokens);
-    todo!()
 }
 
 /// Assemble and link the compiled file `path/to/file.s` and return an executable binary.
