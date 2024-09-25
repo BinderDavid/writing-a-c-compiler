@@ -6,18 +6,19 @@ pub struct Program {
 #[derive(Debug, Clone)]
 pub struct FunctionDefinition {
     pub name: String,
-    pub body: Statement,
+    pub body: Vec<Instruction>,
 }
 
 #[derive(Debug, Clone)]
-pub enum Statement {
-    Return(Exp),
+pub enum Instruction {
+    Return(Val),
+    Unary { op: UnaryOp, src: Val, dst: Val },
 }
 
 #[derive(Debug, Clone)]
-pub enum Exp {
+pub enum Val {
     Constant(i64),
-    Unary(UnaryOp, Box<Exp>),
+    Var(String),
 }
 
 #[derive(Debug, Clone)]

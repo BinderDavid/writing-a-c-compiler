@@ -4,6 +4,7 @@ pub mod ast;
 pub mod codegen;
 pub mod lexer;
 pub mod parser;
+pub mod tacky;
 
 /// Preprocess a file `path/to/file.c` and return a file `path/to/file.i`.
 /// The preprocessed file no longer contains C preprocessor directives.

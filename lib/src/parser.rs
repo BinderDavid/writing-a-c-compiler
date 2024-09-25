@@ -10,7 +10,7 @@ pub fn parse_program(tokens: &mut Vec<Token>) -> Result<Program, Error> {
     if !tokens.is_empty() {
         Err("Extra tokens at end of file".to_string())
     } else {
-        Ok(Program { ef: fundef })
+        Ok(Program { def: fundef })
     }
 }
 

@@ -72,7 +72,7 @@ impl fmt::Display for Operand {
 }
 
 pub fn compile_program(prog: ast::Program) -> Program {
-    Program { defs: compile_function_definition(prog.ef) }
+    Program { defs: compile_function_definition(prog.def) }
 }
 
 pub fn compile_function_definition(fundef: ast::FunctionDefinition) -> FunctionDefinition {
