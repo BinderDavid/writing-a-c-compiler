@@ -1,9 +1,7 @@
 use std::{path::PathBuf, process::Command};
 
-pub mod ast;
 pub mod codegen;
-pub mod lexer;
-pub mod parser;
+pub mod frontend;
 pub mod tacky;
 
 /// Preprocess a file `path/to/file.c` and return a file `path/to/file.i`.

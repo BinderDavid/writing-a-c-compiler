@@ -1,6 +1,6 @@
 use core::fmt;
 
-use crate::ast;
+use crate::frontend::ast;
 
 pub struct Program {
     pub defs: FunctionDefinition,
