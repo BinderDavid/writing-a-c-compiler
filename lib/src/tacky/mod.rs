@@ -1,3 +1,5 @@
+pub mod emit;
+
 #[derive(Debug, Clone)]
 pub struct Program {
     pub def: FunctionDefinition,
