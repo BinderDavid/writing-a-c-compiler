@@ -17,4 +17,11 @@ pub enum Statement {
 #[derive(Debug, Clone)]
 pub enum Exp {
     Constant(i64),
+    Unary(UnaryOp, Box<Exp>),
+}
+
+#[derive(Debug, Clone)]
+pub enum UnaryOp {
+    Complement,
+    Negate,
 }

@@ -92,5 +92,6 @@ pub fn compile_statement(stmt: ast::Statement) -> Vec<Instruction> {
 pub fn compile_exp(exp: ast::Exp) -> Operand {
     match exp {
         ast::Exp::Constant(i) => Operand::Immediate(i),
+        ast::Exp::Unary(_, _) => todo!("Not implemented yet"),
     }
 }

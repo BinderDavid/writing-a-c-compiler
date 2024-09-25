@@ -1,5 +1,5 @@
 use crate::{
-    ast::{Exp, FunctionDefinition, Program, Statement},
+    ast::{Exp, FunctionDefinition, Program, Statement, UnaryOp},
     lexer::Token,
 };
 
@@ -42,6 +42,19 @@ pub fn parse_exp(tokens: &mut Vec<Token>) -> Result<Exp, Error> {
     let tok = get_token(tokens)?;
     match tok {
         Token::IntLit(i) => Ok(Exp::Constant(i)),
+        Token::Tilde => {
+            let exp = parse_exp(tokens)?;
+            Ok(Exp::Unary(UnaryOp::Complement, Box::new(exp)))
+        }
+        Token::Hyphen => {
+            let exp = parse_exp(tokens)?;
+            Ok(Exp::Unary(UnaryOp::Negate, Box::new(exp)))
+        }
+        Token::OpenParen => {
+            let exp = parse_exp(tokens)?;
+            expect_token(tokens, Token::CloseParen)?;
+            Ok(exp)
+        }
         tok => Err(format!("Unexpected token in expression: {}", tok)),
     }
 }
