@@ -6,6 +6,8 @@ binary:
 test_1: binary
 	writing-a-c-compiler-tests/test_compiler $(BIN) --chapter 1
 
+test_2: binary
+	writing-a-c-compiler-tests/test_compiler $(BIN) --chapter 2 --stage lex
 
 .PHONY: install
 install:

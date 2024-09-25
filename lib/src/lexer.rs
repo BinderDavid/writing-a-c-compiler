@@ -15,7 +15,7 @@ impl fmt::Display for LexicalError {
 }
 
 #[derive(Logos, Debug, Clone, PartialEq, Eq)]
-#[logos(skip r"\s*", skip r"--(([^ \n\r]| [^\|\n\r])[^\n\r]*)?[\n\r]*", error = LexicalError)]
+#[logos(skip r"\s*", skip r"[ \t\n\f]+", error = LexicalError)]
 pub enum Token {
     // Keywords
     //
@@ -39,6 +39,12 @@ pub enum Token {
     CloseBrace,
     #[token(";")]
     Semi,
+    #[token("~")]
+    Tilde,
+    #[token("-")]
+    Hyphen,
+    #[token("--")]
+    DoubleHyphen,
     // Identifiers
     //
     //
