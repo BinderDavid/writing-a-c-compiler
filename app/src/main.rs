@@ -2,8 +2,8 @@ use std::{fs, path::PathBuf, process::exit};
 
 use clap::Parser;
 use tacky_lib::{
-    assemble_and_link, codegen::compile_program, frontend::lexer::lex,
-    frontend::parser::parse_program, preprocess,
+    codegen::compile_program, driver::assemble_and_link, driver::preprocess, frontend::lexer::lex,
+    frontend::parser::parse_program,
 };
 
 #[derive(Parser)]
