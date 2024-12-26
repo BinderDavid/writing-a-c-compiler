@@ -1,6 +1,6 @@
 use core::fmt;
 
-use crate::frontend::ast;
+use crate::tacky;
 
 pub struct Program {
     pub defs: FunctionDefinition,
@@ -71,27 +71,15 @@ impl fmt::Display for Operand {
     }
 }
 
-pub fn compile_program(prog: ast::Program) -> Program {
+pub fn compile_program(prog: tacky::Program) -> Program {
     Program { defs: compile_function_definition(prog.def) }
 }
 
-pub fn compile_function_definition(fundef: ast::FunctionDefinition) -> FunctionDefinition {
-    let ast::FunctionDefinition { name, body } = fundef;
-    FunctionDefinition { name, instructions: compile_statement(body) }
+pub fn compile_function_definition(fundef: tacky::FunctionDefinition) -> FunctionDefinition {
+    let tacky::FunctionDefinition { name, body } = fundef;
+    FunctionDefinition { name, instructions: compile_instructions(body) }
 }
 
-pub fn compile_statement(stmt: ast::Statement) -> Vec<Instruction> {
-    match stmt {
-        ast::Statement::Return(exp) => {
-            let op = compile_exp(exp);
-            vec![Instruction::Mov { src: op, dst: Operand::Register }, Instruction::Ret]
-        }
-    }
-}
-
-pub fn compile_exp(exp: ast::Exp) -> Operand {
-    match exp {
-        ast::Exp::Constant(i) => Operand::Immediate(i),
-        ast::Exp::Unary(_, _) => todo!("Not implemented yet"),
-    }
+pub fn compile_instructions(_instructions: Vec<tacky::Instruction>) -> Vec<Instruction> {
+    todo!()
 }
