@@ -14,14 +14,17 @@ pub struct FunctionDefinition {
 #[derive(Debug, Clone)]
 pub enum Instruction {
     Return(Val),
-    Unary { op: UnaryOp, src: Val, dst: Val },
+    Unary { op: UnaryOp, src: Val, dst: Var },
 }
 
 #[derive(Debug, Clone)]
 pub enum Val {
     Constant(i64),
-    Var(String),
+    Var(Var),
 }
+
+#[derive(Debug, Clone)]
+pub struct Var { pub name: String }
 
 #[derive(Debug, Clone)]
 pub enum UnaryOp {
