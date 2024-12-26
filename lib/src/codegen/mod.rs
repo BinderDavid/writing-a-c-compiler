@@ -71,15 +71,15 @@ impl fmt::Display for Operand {
     }
 }
 
-pub fn compile_program(prog: tacky::Program) -> Program {
+pub fn compile_program(prog: tacky::ast::Program) -> Program {
     Program { defs: compile_function_definition(prog.def) }
 }
 
-pub fn compile_function_definition(fundef: tacky::FunctionDefinition) -> FunctionDefinition {
-    let tacky::FunctionDefinition { name, body } = fundef;
+pub fn compile_function_definition(fundef: tacky::ast::FunctionDefinition) -> FunctionDefinition {
+    let tacky::ast::FunctionDefinition { name, body } = fundef;
     FunctionDefinition { name, instructions: compile_instructions(body) }
 }
 
-pub fn compile_instructions(_instructions: Vec<tacky::Instruction>) -> Vec<Instruction> {
+pub fn compile_instructions(_instructions: Vec<tacky::ast::Instruction>) -> Vec<Instruction> {
     todo!()
 }

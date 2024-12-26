@@ -2,7 +2,9 @@ use std::{fs, path::PathBuf, process::exit};
 
 use clap::Parser;
 use tacky_lib::{
-    codegen::compile_program, driver::{assemble_and_link, preprocess}, frontend::{lexer::lex, parser::parse_program},
+    codegen::compile_program,
+    driver::{assemble_and_link, preprocess},
+    frontend::{lexer::lex, parser::parse_program},
     tacky::emit::EmitTacky,
 };
 
